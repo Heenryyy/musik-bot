@@ -20,16 +20,16 @@ async def on_ready():
                 activity = discord.Activity(type=discord.ActivityType.listening, name='nothing.')
                 await bot.change_presence(activity=activity)
 
-@bot.command(name="join", help="musik95 joined the channel!")
+@bot.command(name="join", help="Bot joined the channel!")
 async def join(ctx):
     if not ctx.message.author.voice:
-        await ctx.send(f"{ctx.message.author.name} is not connected to channel!")
+        await ctx.send(f"{ctx.message.author.name} is not connected to a channel!")
         return
     else:
         channel=ctx.message.author.voice.channel
         await channel.connect()
 
-@bot.command(name="leave", help=" left the channel!")
+@bot.command(name="leave", help="Bot left the channel!")
 async def leave(ctx):
     voice_client = ctx.message.guild.voice_client
     if voice_client.is_connected():
