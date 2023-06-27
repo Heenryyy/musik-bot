@@ -11,6 +11,15 @@ intents = discord.Intents().all()
 client = discord.Client(intents=intents)
 bot = commands.Bot(command_prefix="!", intents=intents)
 
+@bot.event
+async def on_ready():
+    for guild in bot.guilds:
+        for channel in guild.text_channels:
+            if str(channel) == 'Allgemein':
+                await channel.send('Bot activated...')
+                activity = discord.Activity(type=discord.ActivityType.listening, name='nothing.')
+                await bot.change_presence(activity=activity)
+
 @bot.command(name="join", help="musik95 joined the channel!")
 async def join(ctx):
     if not ctx.message.author.voice:
